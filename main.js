@@ -63,5 +63,4 @@ function game() {
     else finalWinner = "Tie";
     return finalWinner;
 }
-console.log(`hello!`)
 console.log(game());
