@@ -1,11 +1,8 @@
 //TODO: STEP 6 OF ROCK PAPER SCISSORS PROJECT
 //DEALT WITH: COMPUTER AUTOMATION, USER PROMPT, CONTINUOUS PROMPT UNTIL CORRECT INPUT, X BEATS Y LOGIC
-
-
-
-
-
-
+let res = "";
+let userPoints = 0;
+let computerPoints = 0;
 function computerPlay() {
     let choice;
     let number = Math.floor(Math.random() * (4-1) + 1);
@@ -23,41 +20,50 @@ function playerSelection() {
     }
     return userChoice;
 }
-
-let choiceOne = computerPlay();
-let choiceTwo = playerSelection();
-
-
 function playRound(computer, user) {
-    computer = choiceOne;
-    user = choiceTwo;
+    computer = computerPlay();
+    user = playerSelection();
 
     if ((user === 'rock') && (computer === 'scissors')) {
-        return `You win! ${user.charAt(0).toUpperCase() + user.slice(1)} beats ${computer.charAt(0).toUpperCase() + computer.slice(1)}`;
+        res = `You win! ${user.charAt(0).toUpperCase() + user.slice(1)} beats ${computer.charAt(0).toUpperCase() + computer.slice(1)}`;
+        userPoints++;
     }
     else if ((user === 'rock') && (computer === 'paper'))  {
-        return `You lose! ${computer.charAt(0).toUpperCase() + computer.slice(1)} beats ${user.charAt(0).toUpperCase() + user.slice(1)}`;
+        res = `You lose! ${computer.charAt(0).toUpperCase() + computer.slice(1)} beats ${user.charAt(0).toUpperCase() + user.slice(1)}`;
+        computerPoints++;
     }
     if ((user === 'paper') && (computer === 'rock')) {
-        return `You win! ${user.charAt(0).toUpperCase() + user.slice(1)} beats ${computer.charAt(0).toUpperCase() + computer.slice(1)}`;
+        res = `You win! ${user.charAt(0).toUpperCase() + user.slice(1)} beats ${computer.charAt(0).toUpperCase() + computer.slice(1)}`;
+        userPoints++;
     }
     else if ((user === 'paper') && (computer === 'scissors'))  {
-        return `You lose! ${computer.charAt(0).toUpperCase() + computer.slice(1)} beats ${user.charAt(0).toUpperCase() + user.slice(1)}`;
+        res = `You lose! ${computer.charAt(0).toUpperCase() + computer.slice(1)} beats ${user.charAt(0).toUpperCase() + user.slice(1)}`;
+        computerPoints++;
     }
     if ((user === 'scissors') && (computer === 'paper')) {
-        return `You win! ${user.charAt(0).toUpperCase() + user.slice(1)} beats ${computer.charAt(0).toUpperCase() + computer.slice(1)}`;
+        res = `You win! ${user.charAt(0).toUpperCase() + user.slice(1)} beats ${computer.charAt(0).toUpperCase() + computer.slice(1)}`;
+        userPoints++;
     }
     else if ((user === 'scissors') && (computer === 'rock'))  {
-        return `You lose! ${computer.charAt(0).toUpperCase() + computer.slice(1)} beats ${user.charAt(0).toUpperCase() + user.slice(1)}`;
+        res = `You lose! ${computer.charAt(0).toUpperCase() + computer.slice(1)} beats ${user.charAt(0).toUpperCase() + user.slice(1)}`;
+        computerPoints++;
     }
-    else if (user === computer)
-        return `Tie`;
+    else if (user === computer) {
+        res = `Tie`;
+    }
+    return res;
 }
-
 function game() {
-
-    // blah blah bla
+    let finalWinner = "";
+    for (let i = 1; i <= 5; i++) {
+        console.log(`Round ${i}: ${playRound()}`);
+    }
+    console.log(`User: ${userPoints}`)
+    console.log(`Computer: ${computerPoints}`)
+    if (userPoints > computerPoints) finalWinner = "User wins!";
+    else if (userPoints < computerPoints) finalWinner = "Computer wins!";
+    else finalWinner = "Tie";
+    return finalWinner;
 }
-
-let temp = playRound(choiceOne, choiceTwo);
-console.log(temp);
+console.log(`hello!`)
+console.log(game());
